@@ -1,4 +1,7 @@
 -- Create accounts table for ATM users
+-- Ensure pgcrypto is available for gen_random_uuid()
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
 CREATE TABLE public.accounts (
   id UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
   account_number VARCHAR(16) NOT NULL UNIQUE,
@@ -64,8 +67,8 @@ EXECUTE FUNCTION public.update_updated_at_column();
 
 -- Insert two sample users
 INSERT INTO public.accounts (account_number, pin, holder_name, balance) VALUES
-('1234567890123456', '1234', 'John Doe', 5000.00),
-('9876543210987654', '4321', 'Jane Smith', 7500.00);
+('1234567890123456', '1234', 'Atharva', 5000.00),
+('9876543210987654', '4321', 'Athrv', 7500.00);
 
 -- Insert some sample transactions for demonstration
 INSERT INTO public.transactions (account_id, type, amount, description, balance_after) 
