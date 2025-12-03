@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 222 47% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 173 80% 40%;
+    --primary-foreground: 222 47% 8%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 173 80% 40%;
+    --accent-foreground: 222 47% 8%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 210 40% 98%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 222 47% 8%;
+
+    --border: 217 33% 20%;
+    --input: 217 33% 17%;
+    --ring: 173 80% 40%;
+
+    --radius: 0.75rem;
+
+    /* ATM specific tokens */
+    --atm-glow: 173 80% 40%;
+    --atm-gradient-start: 222 47% 8%;
+    --atm-gradient-end: 222 47% 12%;
+    --atm-card-shine: linear-gradient(135deg, hsl(217 33% 22%) 0%, hsl(217 33% 17%) 50%, hsl(217 33% 14%) 100%);
+    --atm-accent-gradient: linear-gradient(135deg, hsl(173 80% 40%) 0%, hsl(173 80% 30%) 100%);
+    --atm-shadow-glow: 0 0 30px hsl(173 80% 40% / 0.2);
+    --atm-shadow-card: 0 10px 40px -10px hsl(0 0% 0% / 0.5);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .atm-container {
+    @apply min-h-screen flex items-center justify-center p-4;
+    background: linear-gradient(180deg, hsl(var(--atm-gradient-start)) 0%, hsl(var(--atm-gradient-end)) 100%);
+  }
+
+  .atm-card {
+    @apply rounded-2xl p-8 relative overflow-hidden;
+    background: var(--atm-card-shine);
+    box-shadow: var(--atm-shadow-card);
+  }
+
+  .atm-card::before {
+    content: '';
+    @apply absolute inset-0 rounded-2xl pointer-events-none;
+    background: linear-gradient(135deg, hsl(173 80% 40% / 0.1) 0%, transparent 50%);
+  }
+
+  .atm-input {
+    @apply w-full bg-secondary border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 font-mono text-lg tracking-wider;
+  }
+
+  .atm-button {
+    @apply w-full bg-primary text-primary-foreground font-semibold py-4 rounded-lg transition-all duration-200 hover:opacity-90 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+    box-shadow: 0 4px 20px hsl(173 80% 40% / 0.3);
+  }
+
+  .atm-button-secondary {
+    @apply w-full bg-secondary text-foreground font-semibold py-4 rounded-lg border border-border transition-all duration-200 hover:bg-secondary/80 active:scale-[0.98];
+  }
+
+  .atm-button-danger {
+    @apply w-full bg-destructive text-destructive-foreground font-semibold py-4 rounded-lg transition-all duration-200 hover:opacity-90 active:scale-[0.98];
+  }
+
+  .atm-menu-button {
+    @apply flex items-center gap-4 p-4 rounded-xl bg-secondary/50 border border-border/50 hover:bg-secondary hover:border-primary/30 transition-all duration-200 cursor-pointer;
+  }
+
+  .atm-menu-icon {
+    @apply w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-200;
+  }
+
+  .atm-balance {
+    @apply font-mono text-4xl font-bold text-primary tracking-wider;
+    text-shadow: 0 0 20px hsl(173 80% 40% / 0.5);
+  }
+
+  .atm-label {
+    @apply text-sm text-muted-foreground uppercase tracking-wider mb-2;
+  }
+
+  .atm-value {
+    @apply font-mono text-lg text-foreground;
+  }
+
+  .atm-transaction {
+    @apply flex items-center justify-between p-4 rounded-lg bg-secondary/30 border border-border/30;
+  }
+
+  .atm-keypad {
+    @apply grid grid-cols-3 gap-3;
+  }
+
+  .atm-key {
+    @apply h-14 rounded-lg bg-secondary border border-border font-mono text-xl font-bold text-foreground hover:bg-secondary/80 hover:border-primary/50 transition-all duration-200 active:scale-95;
+  }
+
+  .atm-header {
+    @apply text-center mb-8;
+  }
+
+  .atm-title {
+    @apply text-2xl font-bold text-foreground mb-1;
+  }
+
+  .atm-subtitle {
+    @apply text-muted-foreground text-sm;
+  }
+
+  /* Animations */
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px hsl(173 80% 40% / 0.3); }
+    50% { box-shadow: 0 0 40px hsl(173 80% 40% / 0.5); }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.4s ease-out forwards;
+  }
+
+  .animation-delay-100 { animation-delay: 0.1s; }
+  .animation-delay-200 { animation-delay: 0.2s; }
+  .animation-delay-300 { animation-delay: 0.3s; }
+  .animation-delay-400 { animation-delay: 0.4s; }
+}
