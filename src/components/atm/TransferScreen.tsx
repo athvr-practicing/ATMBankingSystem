@@ -75,8 +75,8 @@ const TransferScreen: React.FC = () => {
                 maxLength={16}
                 disabled={isLoading}
               />
-              <p className="text-xs text-muted-foreground mt-2">
-                Demo: 9876543210987654 (Jane Smith)
+                <p className="text-xs text-muted-foreground mt-2">
+                Demo: 9876543210987654 (Athrv)
               </p>
             </div>
 

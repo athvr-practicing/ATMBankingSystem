@@ -90,8 +90,8 @@ Open http://localhost:5173 (or the URL Vite prints) and you should be able to us
 
 The included migration seeds two accounts for testing:
 
-- Account number: `1234567890123456` — PIN `1234` — holder: John Doe — balance: 5000.00
-- Account number: `9876543210987654` — PIN `4321` — holder: Jane Smith — balance: 7500.00
+- Account number: `1234567890123456` — PIN `1234` — holder: Atharva — balance: 5000.00
+- Account number: `9876543210987654` — PIN `4321` — holder: Athrv — balance: 7500.00
 
 Use those to log in in the Demo UI.
 
